@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akanksha Nayak — Data & ML</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #F5F5F3;
+  --dark: #141414;
+  --ink: #1A1A1A;
+  --ink-muted: #6B6B6B;
+  --ink-faint: #B0B0B0;
+  --border: #E4E4E2;
+  --green: #7B9E87;
+  --green-dim: #5C7A68;
+  --green-light: #EEF3F0;
+  --white: #FFFFFF;
+  --serif: 'DM Serif Display', serif;
+  --sans: 'Inter', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: var(--sans);
+  color: var(--ink);
+}
+
+/* ── FLOATING NAV ── */
+.nav {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: var(--dark);
+  border-radius: 100px;
+  padding: 9px 18px 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 4px 28px rgba(0,0,0,0.22);
+  white-space: nowrap;
+}
+.nav-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #F5F5F3;
+  letter-spacing: 0.01em;
+}
+.nav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+.nav-links a {
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(245,245,243,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #F5F5F3; }
+
+/* ── LAYOUT ── */
+.layout {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 1fr 40px;
+}
+
+/* ── LEFT PANEL ── */
+.left {
+  grid-row: 1 / 2;
+  background: var(--dark);
+  border-right: 1px solid #2A2A2A;
+  padding: 48px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+/* subtle dot grid on left panel */
+.left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.left-top { position: relative; }
+.left-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 500;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.1s;
+}
+.left-headline {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: #F5F5F3;
+  margin-bottom: 0;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.25s;
+}
+.left-headline .line { display: block; }
+.left-headline .paren {
+  color: var(--green);
+}
+.left-bottom {
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.5s;
+}
+.left-location {
+  font-size: 10px;
+  color: rgba(245,245,243,0.25);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.left-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--green);
+  text-decoration: none;
+  border: 1px solid #2A2A2A;
+  padding: 8px 14px;
+  border-radius: 100px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.left-cta:hover {
+  border-color: var(--green);
+  background: rgba(123,158,135,0.08);
+}
+
+/* ── RIGHT PANEL ── */
+.right {
+  grid-row: 1 / 2;
+  background: var(--bg);
+  padding: 48px 40px 32px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.right-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.35s;
+}
+.right-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 500;
+}
+.carousel-controls {
+  display: flex;
+  gap: 8px;
+}
+.ctrl-btn {
+  width: 34px; height: 34px;
+  border: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--ink-muted);
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.ctrl-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+  background: var(--green-light);
+}
+
+/* ── CAROUSEL ── */
+.carousel-wrapper {
+  overflow: hidden;
+  flex: 1;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.45s;
+}
+.carousel-track {
+  display: flex;
+  gap: 14px;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.pcard {
+  flex: 0 0 calc(33.333% - 10px);
+  border: 1px solid var(--border);
+  padding: 24px 20px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  border-radius: 3px;
+}
+.pcard::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.pcard:hover {
+  border-color: rgba(123,158,135,0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 36px rgba(123,158,135,0.1);
+}
+.pcard:hover::after { transform: scaleX(1); }
+.pcard-type {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--green-dim);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.pcard-name {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+.pcard-desc {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  line-height: 1.7;
+  flex: 1;
+}
+.pcard-stack {
+  font-size: 10px;
+  color: var(--ink-faint);
+  margin-top: 12px;
+  line-height: 1.6;
+}
+.pcard-stat {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--green-dim);
+}
+.pcard-links {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+.pcard-link {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.pcard-link:hover { color: var(--green-dim); border-color: var(--green); }
+
+.cdots {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards 0.55s;
+}
+.cdot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--ink-faint);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.cdot.active { background: var(--green); transform: scale(1.4); }
+
+/* ── TICKER ── */
+.ticker {
+  grid-column: 1 / -1;
+  grid-row: 2 / 3;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  background: var(--dark);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 0 36px;
+  gap: 20px;
+}
+.ticker-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.ticker-div {
+  width: 1px; height: 14px;
+  background: #2A2A2A;
+  flex-shrink: 0;
+}
+.ticker-outer {
+  overflow: hidden;
+  flex: 1;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+.ticker-track {
+  display: flex;
+  animation: ticker 32s linear infinite;
+  white-space: nowrap;
+}
+.ticker-track:hover { animation-play-state: paused; }
+.ticker-item {
+  font-size: 10px;
+  color: rgba(245,245,243,0.35);
+  padding: 0 16px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+.ticker-sep { font-size: 10px; color: #2A2A2A; }
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  html, body { overflow: auto; }
+  .layout {
+    height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 40px;
+  }
+  .left {
+    grid-row: 1;
+    min-height: 60vh;
+    border-right: none;
+    border-bottom: 1px solid #2A2A2A;
+    padding: 80px 28px 40px;
+  }
+  .right {
+    grid-row: 2;
+    min-height: 70vh;
+    padding: 36px 24px 28px;
+  }
+  .ticker { grid-column: 1; grid-row: 3; }
+  .pcard { flex: 0 0 82%; }
+  .left-headline { font-size: 36px; }
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING NAV -->
+<nav class="nav">
+  <span class="nav-name">Akanksha Nayak</span>
+  <div class="nav-dot"></div>
+  <div class="nav-links">
+    <a href="mailto:n.akankssha@gmail.com">Email</a>
+    <a href="https://www.linkedin.com/in/akanksha-nayak-1aa136207/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Akankshaaa09" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="left-top">
+      <p class="left-eyebrow">Data · ML · CS Graduate 2026</p>
+      <h1 class="left-headline">
+        <span class="line">building</span>
+        <span class="line"><span class="paren">(pipelines)</span></span>
+        <span class="line">that</span>
+        <span class="line"><span class="paren">(actually work)</span></span>
+        <span class="line">with</span>
+        <span class="line"><span class="paren">(real data)</span></span>
+      </h1>
+    </div>
+    <div class="left-bottom">
+      <a href="mailto:n.akankssha@gmail.com" class="left-cta">Get in touch ↗</a>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="right-header">
+      <p class="right-label">05 projects · 02 research papers</p>
+      <div class="carousel-controls">
+        <button class="ctrl-btn" id="prevBtn">&#8592;</button>
+        <button class="ctrl-btn" id="nextBtn">&#8594;</button>
+      </div>
+    </div>
+
+    <div class="carousel-wrapper">
+      <div class="carousel-track" id="track">
+
+        <div class="pcard">
+          <div class="pcard-type">Data Analytics</div>
+          <div class="pcard-name">KKBox Churn Analysis</div>
+          <div class="pcard-desc">Processed 400M+ user log rows. XGBoost churn model with SHAP explainability on 970K subscribers — identified auto-renew as the dominant retention lever.</div>
+          <div class="pcard-stack">Python · SQL · XGBoost · SHAP · Streamlit</div>
+          <div class="pcard-stat">AUC 0.947</div>
+          <div class="pcard-links">
+            <a class="pcard-link" href="https://github.com/Akankshaaa09/kkbox-subscription-retention-analysis" target="_blank">GitHub ↗</a>
+            <a class="pcard-link" href="https://kkbox-subscription-retention-analysis-lxakz4zp4xegizha4x5jbq.streamlit.app/" target="_blank">Live App ↗</a>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-type">Data Engineering</div>
+          <div class="pcard-name">Supply Chain Delay Pipeline</div>
+          <div class="pcard-desc">End-to-end Azure analytics pipeline on 96K Olist orders. XGBoost delay classifier against 13.8:1 class imbalance. Power BI dashboard for stakeholders.</div>
+          <div class="pcard-stack">Azure · XGBoost · Power BI · Python</div>
+          <div class="pcard-stat">AUC 0.84 · Azure deployed</div>
+          <div class="pcard-links">
+            <a class="pcard-link" href="https://github.com/Akankshaaa09/supply-chain-analytics" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-type">Predictive Analytics</div>
+          <div class="pcard-name">Urban Mobility Forecasting</div>
+          <div class="pcard-desc">Analysed 2.82M NYC taxi trips. Found 2.1x rush-hour demand spike. Rebalancing simulation recovered ~104K rides/day.</div>
+          <div class="pcard-stack">Python · XGBoost · Statistical Modelling · Streamlit</div>
+          <div class="pcard-stat">83.1% accuracy · MAE 28 rides/hr</div>
+          <div class="pcard-links">
+            <a class="pcard-link" href="https://github.com/Akankshaaa09/urban-mobility-demand-forecasting" target="_blank">GitHub ↗</a>
+            <a class="pcard-link" href="https://urban-mobility-demand-forecasting-s3pojajtothu7hj3hromvu.streamlit.app/" target="_blank">Live App ↗</a>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-type">GenAI · RAG</div>
+          <div class="pcard-name">RAG Financial Chatbot</div>
+          <div class="pcard-desc">Plain-language Q&A over financial documents. Optimised FAISS vector search — 97%+ retrieval accuracy. Zero hallucination on in-domain queries.</div>
+          <div class="pcard-stack">LangChain · FAISS · Cohere · Streamlit</div>
+          <div class="pcard-stat">97%+ retrieval accuracy</div>
+          <div class="pcard-links">
+            <a class="pcard-link" href="https://github.com/Akankshaaa09/RAG-Financial-Literacy-Chatbot" target="_blank">GitHub ↗</a>
+            <a class="pcard-link" href="https://rag-financial-literacy-chatbot-dzmtmbgqryzcxengvbo6t4.streamlit.app/" target="_blank">Live App ↗</a>
+          </div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-type">Research · Published</div>
+          <div class="pcard-name">License Plate Recognition in Fog</div>
+          <div class="pcard-desc">Dark Channel Prior dehazing + contour-based localisation pipeline for robust ANPR under adverse weather — where conventional methods fail.</div>
+          <div class="pcard-stack">Computer Vision · OpenCV · Python</div>
+          <div class="pcard-stat">Peer-reviewed · AICVMD-2025, IIT BHU</div>
+        </div>
+
+        <div class="pcard">
+          <div class="pcard-type">Research · Under Review</div>
+          <div class="pcard-name">Adverse-Weather Object Detection</div>
+          <div class="pcard-desc">Novel YOLOv5+DETR hybrid using NMS fusion. Benchmarked on nuScenes-mini across fog, rain, and night — 15% accuracy gain over baselines.</div>
+          <div class="pcard-stack">YOLOv5 · DETR · PyTorch · nuScenes</div>
+          <div class="pcard-stat">15% gain over baselines</div>
+        </div>
+
+
+        <div class="pcard">
+          <div class="pcard-type">ML Exploration</div>
+          <div class="pcard-name">Image Captioning System</div>
+          <div class="pcard-desc">InceptionV3 encoder + Transformer decoder with multi-head attention and causal masking. Trained end-to-end on the COCO dataset.</div>
+          <div class="pcard-stack">TensorFlow · InceptionV3 · Transformer · COCO</div>
+          <div class="pcard-stat">97.5% accuracy · F1 on COCO</div>
+          <div class="pcard-links">
+            <a class="pcard-link" href="https://github.com/Akankshaaa09/Image-Captioning-using-Transformers" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="cdots" id="cdots"></div>
+  </div>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <span class="ticker-label">Stack</span>
+    <div class="ticker-div"></div>
+    <div class="ticker-outer">
+      <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const skills = ["Python","SQL","Pandas","NumPy","Matplotlib","Seaborn","XGBoost","Scikit-learn","TensorFlow","PyTorch","SHAP","LangChain","FAISS","Azure","GCP","Databricks","Power BI","Streamlit","Statistical Modelling","Feature Engineering","A/B Testing","Git","Generative AI","Prompt Engineering"];
+  const tt = document.getElementById('tickerTrack');
+  const rep = [...skills,...skills];
+  tt.innerHTML = rep.map(s=>`<span class="ticker-item">${s}</span><span class="ticker-sep">·</span>`).join('');
+
+  const track = document.getElementById('track');
+  const cards = track.querySelectorAll('.pcard');
+  const cdots = document.getElementById('cdots');
+  let cur = 0;
+
+  function vis() {
+    const w = track.parentElement.offsetWidth;
+    return w < 500 ? 1 : w < 780 ? 2 : 3;
+  }
+  function pages() { return Math.ceil(cards.length / vis()); }
+  function buildDots() {
+    cdots.innerHTML = '';
+    for (let i = 0; i < pages(); i++) {
+      const d = document.createElement('div');
+      d.className = 'cdot' + (i === cur ? ' active' : '');
+      d.onclick = () => goPage(i);
+      cdots.appendChild(d);
+    }
+  }
+  function goPage(p) {
+    cur = Math.max(0, Math.min(p, pages()-1));
+    const cw = cards[0].offsetWidth + 14;
+    track.style.transform = `translateX(-${cur * vis() * cw}px)`;
+    cdots.querySelectorAll('.cdot').forEach((d,i) => d.classList.toggle('active', i===cur));
+  }
+  document.getElementById('prevBtn').onclick = () => goPage(cur-1);
+  document.getElementById('nextBtn').onclick = () => goPage(cur+1);
+  window.addEventListener('resize', () => { buildDots(); goPage(0); });
+  buildDots();
+</script>
+</body>
+</html>
