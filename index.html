@@ -441,7 +441,7 @@ html, body {
   <!-- RIGHT -->
   <div class="right">
     <div class="right-header">
-      <p class="right-label">05 projects · 02 research papers</p>
+      <p class="right-label">06 projects · 02 research papers</p>
       <div class="carousel-controls">
         <button class="ctrl-btn" id="prevBtn">&#8592;</button>
         <button class="ctrl-btn" id="nextBtn">&#8594;</button>
@@ -452,6 +452,18 @@ html, body {
       <div class="carousel-track" id="track">
 
         <div class="pcard">
+          <div class="pcard-type">Data Product</div>
+          <div class="pcard-name">ExceptionIQ</div>
+          <div class="pcard-desc">Built a 5-layer PostgreSQL pipeline with automated data-quality validation and full evidence lineage. A 10-rule exception engine flags revenue leakage across a B2B order-to-cash workflow, traced back to source record and dollar delta.</div>
+          <div class="pcard-stack">Python · PostgreSQL · SQL · Streamlit</div>
+          <div class="pcard-stat">6,000+ orders · 1,587 validated cases</div>
+          <div class="pcard-links">
+            <a class="pcard-link" href="https://github.com/Akankshaaa09/exceptioniq" target="_blank">GitHub ↗</a>
+            <a class="pcard-link" href="https://exceptioniqv1.streamlit.app/" target="_blank">Live App ↗</a>
+          </div>
+        </div>
+
+        <div class="pcard">
           <div class="pcard-type">Data Analytics</div>
           <div class="pcard-name">KKBox Churn Analysis</div>
           <div class="pcard-desc">Processed 400M+ user log rows. XGBoost churn model with SHAP explainability on 970K subscribers — identified auto-renew as the dominant retention lever.</div>
@@ -459,7 +471,7 @@ html, body {
           <div class="pcard-stat">AUC 0.9876 · 5-fold CV 0.9875</div>
           <div class="pcard-links">
             <a class="pcard-link" href="https://github.com/Akankshaaa09/kkbox-subscription-retention-analysis" target="_blank">GitHub ↗</a>
-            <a class="pcard-link" href="https://kkbox-subscription-retention-analysis-lxakz4zp4xegizha4x5jbq.streamlit.app/" target="_blank">Live App ↗</a>
+            <a class="pcard-link" href="https://kkbox-subscription-retention-analysis-09.streamlit.app/" target="_blank">Live App ↗</a>
           </div>
         </div>
 
@@ -482,7 +494,7 @@ html, body {
           <div class="pcard-stat">MAE 31.3 · beats Prophet by 34%</div>
           <div class="pcard-links">
             <a class="pcard-link" href="https://github.com/Akankshaaa09/urban-mobility-demand-forecasting" target="_blank">GitHub ↗</a>
-            <a class="pcard-link" href="https://urban-mobility-demand-forecasting-aekjpg6spebrflhts3rtmn.streamlit.app/" target="_blank">Live App ↗</a>
+            <a class="pcard-link" href="https://urban-mobility-demand-forecasting.streamlit.app/" target="_blank">Live App ↗</a>
           </div>
         </div>
 
@@ -494,7 +506,7 @@ html, body {
           <div class="pcard-stat">80% Precision@4</div>
           <div class="pcard-links">
             <a class="pcard-link" href="https://github.com/Akankshaaa09/RAG-Financial-Literacy-Chatbot" target="_blank">GitHub ↗</a>
-            <a class="pcard-link" href="https://rag-financial-literacy-chatbot-dzmtmbgqryzcxengvbo6t4.streamlit.app/" target="_blank">Live App ↗</a>
+            <a class="pcard-link" href="https://rag-financial-literacy-chatbot-v1.streamlit.app/" target="_blank">Live App ↗</a>
           </div>
         </div>
 
@@ -523,7 +535,7 @@ html, body {
           <div class="pcard-stat">BLEU-4 0.0796 · beam search (width 3)</div>
           <div class="pcard-links">
             <a class="pcard-link" href="https://github.com/Akankshaaa09/Image-Captioning-using-Transformers" target="_blank">GitHub ↗</a>
-            <a class="pcard-link" href="https://image-captioning-using-transformers-zc3ytv2wpsordfm89jqd9g.streamlit.app/" target="_blank">Live App ↗</a>
+            <a class="pcard-link" href="https://image-captioning-using-transformers.streamlit.app/" target="_blank">Live App ↗</a>
           </div>
         </div>
 
@@ -544,7 +556,7 @@ html, body {
 </div>
 
 <script>
-  const skills = ["Python","SQL","Pandas","NumPy","Matplotlib","Seaborn","XGBoost","Scikit-learn","TensorFlow","PyTorch","SHAP","LangChain","FAISS","Azure","GCP","Databricks","Power BI","Streamlit","Statistical Modelling","Feature Engineering","A/B Testing","Git","Generative AI","Prompt Engineering"];
+  const skills = ["Python","SQL","PostgreSQL","Pandas","NumPy","Matplotlib","Seaborn","XGBoost","Scikit-learn","TensorFlow","PyTorch","SHAP","LangChain","FAISS","Azure","GCP","Databricks","Power BI","Streamlit","Statistical Modelling","Feature Engineering","A/B Testing","Git","Generative AI","Prompt Engineering"];
   const tt = document.getElementById('tickerTrack');
   const rep = [...skills,...skills];
   tt.innerHTML = rep.map(s=>`<span class="ticker-item">${s}</span><span class="ticker-sep">·</span>`).join('');
