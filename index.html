@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Akanksha Nayak | Data & ML</title>
+<title>Akanksha Nayak | Data, ML & Product</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter+Tight:wght@500;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -14,12 +14,13 @@ a{color:inherit}
 .tiny{font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .top{display:flex;justify-content:space-between;align-items:center}
 .top a{text-decoration:none;margin-left:22px}.top a:hover{color:var(--accent)}
-h1{font-family:var(--sans);font-weight:800;letter-spacing:-.045em;line-height:.9;font-size:clamp(3rem,10.2vw,8.4rem);display:flex;align-items:center;flex-wrap:wrap;margin:70px 0 24px;animation:up .8s both}
-.ring{width:.8em;height:.8em;margin:0 .03em 0 .1em;border-radius:50%;background:var(--ink);color:var(--sheet);display:inline-flex;align-items:center;justify-content:center;font:400 .6em var(--serif);letter-spacing:0;transition:transform .8s}
+h1{--fs:clamp(3rem,10.2vw,8.4rem);font-family:var(--sans);font-weight:800;letter-spacing:-.045em;line-height:1;font-size:var(--fs);margin:70px 0 24px;animation:up .8s both}
+.ring{display:inline-block;position:relative;overflow:hidden;width:calc(var(--fs)*.74);height:calc(var(--fs)*.74);margin:0 .02em 0 .06em;vertical-align:calc(var(--fs)*-.015);border-radius:50%;background:var(--ink);color:var(--sheet);transition:transform .8s}
+.ring i{position:absolute;inset:0;display:grid;place-items:center;font:400 calc(var(--fs)*.5) var(--serif);letter-spacing:0}
 h1:hover .ring{transform:rotate(360deg)}
 .serif{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;text-transform:uppercase}
 .meta{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;animation:up .8s .15s both}
-.cap{font-size:12px;line-height:1.6;max-width:290px}
+.cap{font-size:12px;line-height:1.6;max-width:380px}
 .cap b{font-weight:600}
 .meta .tiny,.bar,.st,.ep,.ty{color:var(--mute)}
 .bar{display:flex;justify-content:space-between;align-items:center;margin-top:64px;padding-bottom:14px}
@@ -72,13 +73,13 @@ h1:hover .ring{transform:rotate(360deg)}
 </head>
 <body>
 <main class="sheet">
-<div class="top tiny"><span>Akanksha Nayak / Data &amp; ML</span>
+<div class="top tiny"><span>Akanksha Nayak / Data, ML &amp; Product</span>
 <nav><a href="mailto:n.akankssha@gmail.com">Email</a><a href="https://www.linkedin.com/in/akanksha-nayak-1aa136207/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Akankshaaa09" target="_blank" rel="noopener">GitHub</a></nav></div>
 
-<h1><span>Akanksha</span><span class="ring" aria-hidden="true">N</span><span class="serif">ayak</span></h1>
+<h1><span>Akanksha</span><span class="ring" aria-hidden="true"><i>N</i></span><span class="serif">ayak</span></h1>
 <div class="meta">
-<p class="cap"><b>Building pipelines that actually work with real data.</b><br>Data and ML, computer science graduate 2026.</p>
-<span class="tiny">Data · ML · Portfolio</span>
+<p class="cap"><b>Building pipelines that actually work with real data.</b><br>Data, ML and product, computer science graduate 2026.</p>
+<span class="tiny">Data · ML · Product · Portfolio</span>
 </div>
 
 <div class="bar tiny"><span>06 projects · 02 research papers</span>
@@ -132,7 +133,7 @@ list.innerHTML=P.map((p,i)=>`<article class="row" data-k="${p.k}">
 <div class="g">${p.sec.map(s=>`<div><h4>${s[0]}</h4><p>${s[1]}</p></div>`).join("")}</div>
 ${p.pipe?`<div class="pipe">${p.pipe}</div>`:""}
 ${p.ln.length?`<div class="ln">${p.ln.map(l=>`<a href="${l[1]}" target="_blank" rel="noopener">${l[0]} ↗</a>`).join("")}</div>`:""}
-</div></div></div></article>`).join("")+`<div class="row soon">Next project, coming soon</div>`;
+</div></div></div></article>`).join("")+`<div class="row soon">More in the works.</div>`;
 list.addEventListener("click",e=>{const b=e.target.closest(".hd");if(!b)return;const r=b.parentElement,o=r.classList.toggle("open");b.setAttribute("aria-expanded",o)});
 document.querySelectorAll(".f").forEach(b=>b.onclick=()=>{
 document.querySelectorAll(".f").forEach(x=>x.classList.remove("on"));b.classList.add("on");
